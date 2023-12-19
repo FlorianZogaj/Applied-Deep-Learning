@@ -95,6 +95,9 @@ be as close as possible to the real object. How good the style is transferred, m
 and can be explored via user studies. By looking at the style loss, I could however still compare
 how the changes in style weight affected the image.
 The goal was to achieve IoU scores of over 75% to ensure that good results are possible when transferring styles.
+In testing_masks.ipynb the IoU values of 2 images are shown. Here I detected the 2 persons on the image and created their masks.
+Both instances have shown IoU values of over 93%, which is more than enough to get a reasonable output style. Creating own masks is very
+manually is very time-consuming, but I wanted to go through this process myself to test the output.
 
 # Style transfer:
 Experimented with different emphasis on content and style. As the objects seem to be less
@@ -107,6 +110,7 @@ measure how well the style of the image is translated into the objects.
 ### How to run:
 By executing the python files in virtart, the checkpoints are downloaded. The file path needs to be set accordingly. (~4gb!)
 Download the requirements specified in requirements.txt.
+In the notebooks you can see functionality of the pipeline step by step.
 
 # Work Breakdown Structure:
 ### Project setup:
