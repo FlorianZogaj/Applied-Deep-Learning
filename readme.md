@@ -74,9 +74,57 @@ https://arxiv.org/pdf/2304.02643.pdf
 - fix resolution issue by dividing the image in multiple patches
 - adjust readme with new samples and explanation
 
-This repository borrows heavily from https://github.com/meituan/YOLOv6/tree/main ![yolov6]()
+This repository borrows from https://github.com/meituan/YOLOv6/tree/main (yolov6 directory)
 
 
-# Testing:
-Have to use some kind of threshhold. If the detection at least detects everything "important" that is
-on the image and in our classes of detected objects, we accept it.
+
+
+# Object Detection:
+Regarding the object detection I have created some tests of my images to ensure the more interesting
+objects (not considering too small objects or objects too far in background) are correctly detected.
+As the plan is to make an application where a user can upload a picture and let his objects be detected
+and then transfer a certain style on those, it might be less important to correctly classify the label
+of the object but rather classify the objects at all with the right mask.
+
+
+# Error Metric:
+I manually created masks of objects in my images and compared them to the masks created by SAM.
+In this case the manually created masks are the "ground truth" that is being compared to by IoU.
+If an object is detected and I want to transfer a style to that object, I would want the mask to
+be as close as possible to the real object. How good the style is transferred, may be more subjective
+and can be explored via user studies. By looking at the style loss, I could however still compare
+how the changes in style weight affected the image.
+The goal was to achieve IoU scores of over 75% to ensure that good results are possible when transferring styles.
+
+# Style transfer:
+Experimented with different emphasis on content and style. As the objects seem to be less
+recognisable in contrast to their surroundings without style, I have reduced the style_score
+and increased the content_score in the calculation of loss. This resulted in better looking images.
+Further experimentation can be done by adjusting the weights. Also, a user study can be conducted to
+measure how well the style of the image is translated into the objects.
+
+
+### How to run:
+By executing the python files in virtart, the checkpoints are downloaded. The file path needs to be set accordingly. (~4gb!)
+Download the requirements specified in requirements.txt.
+
+# Work Breakdown Structure:
+### Project setup:
+- Estimated: 7h
+- Actual: 12h
+
+### Design and Build pipeline:
+- Estimated: 20h
+- Actual: 20h
+
+### Fine-Tuning:
+- Estimated: 17h
+- Actual: 17h
+
+### Application-Development:
+- Estimated: 6h
+- Actual: tbd
+
+### Presentation preparation:
+- Estimated: 3h
+- Actual: tbd
