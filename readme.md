@@ -59,23 +59,9 @@ Kirillov A., Mintun E., Ravi N., Mao H., Rolland C., Gustafson L., Xiao T., Whit
 https://arxiv.org/pdf/2304.02643.pdf
 
 
-
-
-# Further Todo's
-
-- create tests
-  - use amount of yolo bounding boxes vs real number (2 persons)
-  - check iou of segment anything vs manual mask)
-- yolo with test notebook for visualization
-- sam with test notebook etc.
-- style transfer
-- improve style transfer with adjusting weight etc.
-- plot graph of loss with varying influences
-- fix resolution issue by dividing the image in multiple patches
-- adjust readme with new samples and explanation
+# Assignment 2 explanation:
 
 This repository borrows from https://github.com/meituan/YOLOv6/tree/main (yolov6 directory)
-
 
 
 
@@ -132,3 +118,9 @@ In the notebooks you can see functionality of the pipeline step by step.
 ### Presentation preparation:
 - Estimated: 3h
 - Actual: tbd
+
+### Further possible Todo's
+
+- improve style transfer with adjusting weight etc.
+- plot graph of loss with varying influences
+- fix resolution issue by dividing the image in multiple patches -> Could be hard to combine image back together
