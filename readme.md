@@ -95,8 +95,9 @@ measure how well the style of the image is translated into the objects.
 
 ### How to run:
 By executing the python files in virtart, the checkpoints are downloaded. The file path needs to be set accordingly. (~4gb!)
-Download the requirements specified in requirements.txt.
-In the notebooks you can see functionality of the pipeline step by step.
+Download the requirements specified in requirements.txt. **The Python version of this project: 3.9.7**
+
+In the notebooks you can see functionality of the pipeline step by step. (yolo detection -> SAM -> style)
 
 # Work Breakdown Structure:
 ### Project setup:

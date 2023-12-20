@@ -6,6 +6,7 @@ import cv2
 from segment_anything import SamPredictor, sam_model_registry
 from PIL import Image
 
+
 class Segmentor:
 
     def __init__(self, threshold=0.3, checkpoint="checkpoints/sam_vit_h_4b8939.pth"):

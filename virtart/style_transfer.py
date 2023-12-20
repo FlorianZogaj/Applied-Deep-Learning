@@ -251,7 +251,6 @@ class StyleTransfer:
                 cropped_frame, ((pad_top, pad_bottom), (pad_left, pad_right)), mode='edge')
         return cv2.resize(padded_frame, resize)
 
-
     # backround stlye transfer will be further explored in future
     def background(self, img, mask, style):
         loader = transforms.Compose([
