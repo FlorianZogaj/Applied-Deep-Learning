@@ -77,12 +77,12 @@ of the object but rather classify the objects at all with the right mask.
 I manually created masks of objects in my images and compared them to the masks created by SAM.
 In this case the manually created masks are the "ground truth" that is being compared to by IoU.
 If an object is detected and I want to transfer a style to that object, I would want the mask to
-be as close as possible to the real object. How good the style is transferred, may be more subjective
-and can be explored via user studies. By looking at the style loss, I could however still compare
+be as close as possible to the real object. How good the style is transferred may be more subjective
+and can be explored via user studies. However, by looking at the loss of style, I was still able to compare 
 how the changes in style weight affected the image.
 The goal was to achieve IoU scores of over 75% to ensure that good results are possible when transferring styles.
 In testing_masks.ipynb the IoU values of 2 images are shown. Here I detected the 2 persons on the image and created their masks.
-Both instances have shown IoU values of over 93%, which is more than enough to get a reasonable output style. Creating own masks is very
+Both instances have shown IoU values of over 93%, which is more than enough to get a reasonable output style. Creating own masks
 manually is very time-consuming, but I wanted to go through this process myself to test the output.
 
 # Style transfer:
