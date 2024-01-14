@@ -6,9 +6,10 @@ from virtart.segment import Segmentor
 from virtart.style_transfer import StyleTransfer
 import warnings
 import cv2
+from tqdm import tqdm
 warnings.filterwarnings('ignore')
 
-def process_image(input_image):
+def process_image(input_image, style_image):
     object_detector = ObjectDetector(device='gpu')
     sam = Segmentor()
     style_transfer = StyleTransfer()
@@ -28,16 +29,17 @@ def process_image(input_image):
         bbox = [int(box) for box in bbox]
         cv2.rectangle(image, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 255, 0), 2)
 
-        # Draw label
         cv2.putText(image, label, (bbox[0], bbox[1] + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
 
-    image = image[:, :, ::-1]
-    return Image.fromarray(image), ''.join(list)
+    person_bboxes = [detection['bbox'] for detection in detections if detection['class'] == 'person']
+    masks = sam(img_numpy, person_bboxes)
+
+    return Image.fromarray(masks[0]), Image.fromarray(masks[1]), '\n'.join(list)
 
 
 iface = gr.Interface(
     fn=process_image,
-    inputs="image",
-    outputs=["image", "text"])
+    inputs=["image", "image"],
+    outputs=["image", "image", "text"])
 
 iface.launch()
