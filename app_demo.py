@@ -45,11 +45,11 @@ def apply_style(input_image, style, selected_objects):
     masks = sam(img_numpy, objects_bboxes)
     result_img = img_numpy.copy()
 
-    # for mask, style in tqdm(zip(masks, [style, style])):
-    #   styled_img, translation_mask, final_style_loss = style_transfer(img_numpy, mask, style)
-    #   result_img[mask] = styled_img[translation_mask]
+    for mask, style in tqdm(zip(masks, [style, style])):
+        styled_img, translation_mask, final_style_loss = style_transfer(img_numpy, mask, style)
+        result_img[mask] = styled_img[translation_mask]
 
-    return Image.fromarray(masks[0])
+    return Image.fromarray(result_img)
 
 
 def show_masks(input_image):
@@ -62,7 +62,7 @@ def show_masks(input_image):
 
     masks = sam(img_numpy, objects_bboxes)
 
-    return [Image.fromarray(masks[0]), Image.fromarray(masks[1]), Image.fromarray(masks[2])]
+    return [Image.fromarray(mask) for mask in masks]
 
 
 with gr.Blocks(theme=gr.themes.Soft()) as app:
@@ -70,7 +70,6 @@ with gr.Blocks(theme=gr.themes.Soft()) as app:
         with gr.Column():
             inp_image = gr.Image(type="numpy", label="Upload Content Image")
             style_image = gr.Image(type="pil", label="Upload Style Image")
-
 
         with gr.Column():
             detect_button = gr.Button("Detect Objects")
@@ -104,4 +103,4 @@ with gr.Blocks(theme=gr.themes.Soft()) as app:
         outputs=styled_image
     )
 
-app.launch()
+app.launch(server_port=1234)

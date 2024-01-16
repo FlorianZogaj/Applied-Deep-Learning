@@ -190,11 +190,11 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
             loss.backward()
 
             run[0] += 1
-            # if run[0] % 50 == 0:
-            #     print("run {}:".format(run))
-            #     print('Style Loss : {:4f} Content Loss: {:4f}'.format(
-            #         style_score.item(), content_score.item()))
-            #     print()
+            if run[0] % 10 == 0:
+                 print("run {}:".format(run))
+                 print('Style Loss : {:4f} Content Loss: {:4f}'.format(
+                     style_score.item(), content_score.item()))
+                 print()
 
             return style_score + content_score
 
@@ -323,7 +323,7 @@ class StyleTransfer:
                 y_max - y_min, x_max - x_min), mode='bilinear', align_corners=False)
             output_tensor_right_size = adjust_bounds_and_translate(
                 y_min, y_max, x_min, x_max, output_tensor_right_size,
-                array_height=mask.shape[0], array_width=mask.shape[1]
+                array_height=mask.shape[1], array_width=mask.shape[0]
             )
         output_right_size = output_tensor_right_size.squeeze().cpu().numpy()
         output_right_size = output_right_size.transpose((1, 2, 0)).copy()
